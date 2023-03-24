@@ -30,13 +30,18 @@ window.OverworldMaps = {
       slime: new Person({
         x: UTILS.withGrid(5),
         y: UTILS.withGrid(6),
-        src: '/images/characters/people/slime3.png'
+        src: '/images/characters/monsters/slime3.png'  
       }),
       person: new GameObject({
         x: UTILS.withGrid(3),
         y: UTILS.withGrid(4),
         src: '/images/characters/people/erio.png'
-      })
+      }),
+      cactus: new GameObject({
+        x: UTILS.withGrid(10),
+        y: UTILS.withGrid(10),
+        src: '/images/objects/cactus.png'
+      }),
     }
   }
 }
