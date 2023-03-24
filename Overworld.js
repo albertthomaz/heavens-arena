@@ -1,35 +1,38 @@
-import GameObject from './GameObject.js'
+import OverworldMap from './OverworldMap.js'
 
 export default class Overworld {
   constructor(config) {
     this.element = config.element
     this.canvas = this.element.querySelector('.game-canvas')
     this.ctx = this.canvas.getContext('2d')
+    this.map = null
+  }
+
+  startGameLoop() {
+    const step = () => {
+      // Clear off the canvas
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+
+      // Draw lower layer
+      this.map.drawLowerImage(this.ctx)
+
+      // Draw game objects
+      Object.values(this.map.gameObjects).forEach((object) => {
+        object.sprite.draw(this.ctx)
+      })
+
+      // Draw upper layer
+      //this.map.drawUpperImage(this.ctx)
+
+      requestAnimationFrame(() => {
+        step()
+      })
+    }
+    step()
   }
 
   init() {
-    const floor = new Image()
-    floor.onload = () => {
-      this.ctx.drawImage(floor, 0, 0)
-    }
-    floor.src = '/images/maps/floor_ok.png'
-
-    // Place some Game Objects!
-    const slime = new GameObject({
-      x: 5,
-      y: 6,
-      src: '/images/characters/people/slime3.png'
-    })
-
-    const person = new GameObject({
-      x: 3,
-      y: 4,
-      src: '/images/characters/people/erio.png'
-    })
-
-    setTimeout(() => {
-      slime.sprite.draw(this.ctx)
-      person.sprite.draw(this.ctx)
-    }, 200)
+    this.map = new OverworldMap(window.OverworldMaps.FirstRoom)
+    this.startGameLoop()
   }
 }
