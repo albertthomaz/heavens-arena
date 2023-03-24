@@ -1,4 +1,6 @@
 import GameObject from './GameObject.js'
+import Person from './Person.js'
+import { UTILS } from './utils.js'
 
 export default class OverworldMap {
   constructor(config) {
@@ -25,14 +27,14 @@ window.OverworldMaps = {
     lowerSrc: '/images/maps/floor_ok.png',
     //upperSrc: '',
     gameObjects: {
-      slime: new GameObject({
-        x: 5,
-        y: 6,
+      slime: new Person({
+        x: UTILS.withGrid(5),
+        y: UTILS.withGrid(6),
         src: '/images/characters/people/slime3.png'
       }),
       person: new GameObject({
-        x: 3,
-        y: 4,
+        x: UTILS.withGrid(3),
+        y: UTILS.withGrid(4),
         src: '/images/characters/people/erio.png'
       })
     }
