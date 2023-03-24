@@ -24,7 +24,7 @@ export default class OverworldMap {
 
 window.OverworldMaps = {
   FirstRoom: {
-    lowerSrc: '/images/maps/floor_ok.png',
+    lowerSrc: '/images/maps/desert.png',
     //upperSrc: '',
     gameObjects: {
       slime: new Person({
