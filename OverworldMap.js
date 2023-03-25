@@ -30,18 +30,21 @@ window.OverworldMaps = {
       slime: new Person({
         x: UTILS.withGrid(5),
         y: UTILS.withGrid(6),
-        src: '/images/characters/monsters/slime_full.png'  
+        src: '/images/characters/monsters/slime_full.png',
+        isPlayerControlled: true,
+        starterAnimation: 'walk-down'
       }),
-      person: new GameObject({
-        x: UTILS.withGrid(3),
-        y: UTILS.withGrid(4),
-        src: '/images/characters/people/erio.png'
+      person: new Person({
+        x: UTILS.withGrid(6),
+        y: UTILS.withGrid(6),
+        src: '/images/characters/people/erio.png',
+        isPlayerControlled: true
       }),
       cactus: new GameObject({
-        x: UTILS.withGrid(10),
-        y: UTILS.withGrid(10),
+        x: UTILS.withGrid(17),
+        y: UTILS.withGrid(4),
         src: '/images/objects/cactus.png'
-      }),
+      })
     }
   }
 }
