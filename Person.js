@@ -20,9 +20,13 @@ export default class Person extends GameObject {
     if (this.isPlayerControlled) {
       this.updatePosition()
       this.updateSprite(state)
+
       if (this.movingProgressRemaining === 0 && state.arrow) {
         this.direction = state.arrow
-        this.movingProgressRemaining = UTILS.FLOOR_GRID_SIZE
+        if (!state.map.isSpaceTaken(this.x, this.y, this.direction)) {
+          state.map.updateWall(this.x, this.y, this.direction)
+          this.movingProgressRemaining = UTILS.FLOOR_GRID_SIZE
+        }
       }
     }
   }

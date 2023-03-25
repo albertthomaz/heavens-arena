@@ -12,5 +12,9 @@ export default class GameObject {
     })
   }
 
+  mount(map) {
+    map.addWall(this.x, this.y)
+  }
+
   update() {}
 }

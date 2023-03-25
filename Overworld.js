@@ -20,7 +20,8 @@ export default class Overworld {
       // Draw game objects
       Object.values(this.map.gameObjects).forEach((object) => {
         object.update({
-          arrow: this.directionInput.direction
+          arrow: this.directionInput.direction,
+          map: this.map
         })
         object.sprite.draw(this.ctx)
       })
@@ -37,6 +38,7 @@ export default class Overworld {
 
   init() {
     this.map = new OverworldMap(window.OverworldMaps.FirstRoom)
+    this.map.mountObjects()
 
     this.directionInput = new DirectionInput()
     this.directionInput.init()
