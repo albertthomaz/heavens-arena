@@ -1,6 +1,6 @@
-import GameObject from './GameObject.js'
-import Person from './Person.js'
-import { UTILS } from './utils.js'
+import GameObject from '../models/GameObject.js'
+import Person from '../models/Person.js'
+import { UTILS } from '../utils/utils.js'
 
 export default class OverworldMap {
   constructor(config) {
@@ -51,25 +51,25 @@ export default class OverworldMap {
 
 window.OverworldMaps = {
   FirstRoom: {
-    lowerSrc: '/images/maps/desert.png',
+    lowerSrc: '/src/assets/images/maps/desert.png',
     //upperSrc: '',
     gameObjects: {
       slime: new Person({
         x: UTILS.withGrid(5),
         y: UTILS.withGrid(6),
-        src: '/images/characters/monsters/slime_full.png',
+        src: '/src/assets/images/characters/monsters/slime_full.png',
         starterAnimation: 'walk-down'
       }),
       person: new Person({
         x: UTILS.withGrid(3),
         y: UTILS.withGrid(10),
-        src: '/images/characters/people/erio.png',
+        src: '/src/assets/images/characters/people/npc2.png',
         isPlayerControlled: true
       }),
       cactus: new GameObject({
         x: UTILS.withGrid(17),
         y: UTILS.withGrid(4),
-        src: '/images/objects/cactus.png'
+        src: '/src/assets/images/objects/cactus.png'
       })
     },
     walls: {

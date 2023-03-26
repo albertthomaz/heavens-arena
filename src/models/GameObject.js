@@ -1,4 +1,4 @@
-import Sprite from './Sprite.js'
+import Sprite from '../components/Sprite.js'
 
 export default class GameObject {
   constructor(config) {
