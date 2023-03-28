@@ -2,9 +2,11 @@ import Sprite from '../components/Sprite.js'
 
 export default class GameObject {
   constructor(config) {
+    if (new.target === GameObject) {
+      throw new TypeError('Cannot construct GameObject instances directly')
+    }
     this.x = config.x || 0
     this.y = config.y || 0
-    this.direction = config.direction || 'down'
     this.sprite = new Sprite({
       gameObject: this,
       src: config.src,
@@ -16,5 +18,7 @@ export default class GameObject {
     map.addWall(this.x, this.y)
   }
 
-  update() {}
+  update() {
+    throw new Error("Method 'update()' must be implemented.")
+  }
 }

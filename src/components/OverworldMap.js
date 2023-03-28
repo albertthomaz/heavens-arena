@@ -1,5 +1,6 @@
-import GameObject from '../models/GameObject.js'
-import Person from '../models/Person.js'
+import Item from '../models/Item.js'
+import NPC from '../models/Npc.js'
+import Player from '../models/Player.js'
 import { UTILS } from '../utils/utils.js'
 
 export default class OverworldMap {
@@ -44,8 +45,8 @@ export default class OverworldMap {
   }
   updateWall(wasX, wasY, direction) {
     this.removeWall(wasX, wasY)
-    const { newX, newY } = UTILS.nextPosition(wasX, wasY, direction)
-    this.addWall(newX, newY)
+    const coord = UTILS.nextPosition(wasX, wasY, direction)
+    this.addWall(coord.x, coord.y)
   }
 }
 
@@ -54,19 +55,19 @@ window.OverworldMaps = {
     lowerSrc: '/src/assets/images/maps/desert.png',
     //upperSrc: '',
     gameObjects: {
-      slime: new Person({
-        x: UTILS.withGrid(5),
-        y: UTILS.withGrid(6),
+      slime: new NPC({
+        x: UTILS.withGrid(2),
+        y: UTILS.withGrid(12),
         src: '/src/assets/images/characters/monsters/slime_full.png',
         starterAnimation: 'walk-down'
       }),
-      person: new Person({
+      player: new Player({
         x: UTILS.withGrid(3),
         y: UTILS.withGrid(10),
         src: '/src/assets/images/characters/people/npc2.png',
         isPlayerControlled: true
       }),
-      cactus: new GameObject({
+      cactus: new Item({
         x: UTILS.withGrid(17),
         y: UTILS.withGrid(4),
         src: '/src/assets/images/objects/cactus.png'

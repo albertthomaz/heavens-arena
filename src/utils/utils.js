@@ -13,6 +13,7 @@ export const UTILS = {
   nextPosition(initialX, initialY, direction) {
     let x = initialX
     let y = initialY
+
     if (direction === 'left') {
       x -= this.FLOOR_GRID_SIZE
     } else if (direction === 'right') {
