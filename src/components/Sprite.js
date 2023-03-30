@@ -35,10 +35,10 @@ export default class Sprite {
         [0, 0]
       ],
       'walk-right': [
-        [1, 1],
-        [2, 1],
-        [3, 1],
-        [0, 1]
+        [1, 3],
+        [2, 3],
+        [3, 3],
+        [0, 3]
       ],
       'walk-up': [
         [1, 2],
@@ -47,10 +47,10 @@ export default class Sprite {
         [0, 2]
       ],
       'walk-left': [
-        [1, 3],
-        [2, 3],
-        [3, 3],
-        [0, 3]
+        [1, 1],
+        [2, 1],
+        [3, 1],
+        [0, 1]
       ]
     }
     this.currentAnimation = config.currentAnimation || 'idle-down'
