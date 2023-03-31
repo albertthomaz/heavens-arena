@@ -5,11 +5,12 @@ export default class NPC extends LivingThing {
     super(config)
   }
 
+  directions = Object.keys(this.directionUpdate)
+
   update(state) {
     let newDirection = null
     if (this.movingProgressRemaining == 0) {
-      if (this.x < 180) newDirection = 'right'
-      else newDirection = 'left'
+      newDirection = this.directions[Math.floor(Math.random() * 4)]
     }
     this.updatePosition(state.map, newDirection)
   }

@@ -33,5 +33,9 @@ export const UTILS = {
       x > 21 * this.FLOOR_GRID_SIZE ||
       y > 13 * this.FLOOR_GRID_SIZE
     )
+  },
+
+  calcDistance(x1, y1, x2, y2) {
+    return Math.round(Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2)))
   }
 }
