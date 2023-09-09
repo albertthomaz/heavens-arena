@@ -25,9 +25,9 @@ export default class Sprite {
     // Configure Animation & Initial State
     this.animations = config.animations || {
       'idle-down': [[0, 0]],
-      'idle-right': [[0, 1]],
+      'idle-right': [[0, 3]],
       'idle-up': [[0, 2]],
-      'idle-left': [[0, 3]],
+      'idle-left': [[0, 1]],
       'walk-down': [
         [1, 0],
         [2, 0],
@@ -51,6 +51,30 @@ export default class Sprite {
         [2, 1],
         [3, 1],
         [0, 1]
+      ],
+      'attack-down': [
+        [1, 4],
+        [2, 4],
+        [3, 4],
+        [0, 4]
+      ],
+      'attack-right': [
+        [1, 7],
+        [2, 7],
+        [3, 7],
+        [0, 7]
+      ],
+      'attack-up': [
+        [1, 6],
+        [2, 6],
+        [3, 6],
+        [0, 6]
+      ],
+      'attack-left': [
+        [1, 5],
+        [2, 5],
+        [3, 5],
+        [0, 5]
       ]
     }
     this.currentAnimation = config.currentAnimation || 'idle-down'

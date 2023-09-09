@@ -21,6 +21,7 @@ export default class Overworld {
       Object.values(this.map.gameObjects).forEach((object) => {
         object.update({
           movementKeyPressed: this.directionInput.direction,
+          attackKeyPressed: this.directionInput.attack,
           map: this.map
         })
         object.sprite.draw(this.ctx)

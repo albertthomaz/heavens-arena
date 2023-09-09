@@ -8,6 +8,9 @@ export default class Player extends LivingThing {
 
   update(state) {
     if (this.isPlayerControlled) {
+      if (state.attackKeyPressed) {
+        this.startAttack()
+      }
       this.updatePosition(state.map, state.movementKeyPressed)
     }
   }

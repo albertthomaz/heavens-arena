@@ -95,7 +95,7 @@ window.OverworldMaps = {
       player: new Player({
         x: UTILS.withGrid(3),
         y: UTILS.withGrid(10),
-        src: '/src/assets/images/characters/people/mage_full.png',
+        src: '/src/assets/images/characters/people/dwarf.png',
         isPlayerControlled: true
       }),
       cactus: new Item({

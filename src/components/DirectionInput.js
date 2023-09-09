@@ -11,10 +11,15 @@ export default class DirectionInput {
       ArrowRight: 'right',
       KeyD: 'right'
     }
+    this.heldAttack = false
   }
 
   get direction() {
     return this.heldDirections[0]
+  }
+
+  get attack() {
+    return this.heldAttack
   }
 
   init() {
@@ -22,6 +27,8 @@ export default class DirectionInput {
       const dir = this.map[e.code]
       if (dir && this.heldDirections.indexOf(dir) === -1) {
         this.heldDirections.unshift(dir)
+      } else if (e.code === 'KeyE') {
+        this.heldAttack = true
       }
     })
     document.addEventListener('keyup', (e) => {
@@ -29,6 +36,8 @@ export default class DirectionInput {
       const index = this.heldDirections.indexOf(dir)
       if (index > -1) {
         this.heldDirections.splice(index, this.heldDirections.length - index)
+      } else if (e.code == 'KeyE') {
+        this.heldAttack = false
       }
     })
   }

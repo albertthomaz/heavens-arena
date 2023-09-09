@@ -9,6 +9,7 @@ export default class LivingThing extends GameObject {
     super(config)
     this.direction = config.direction || 'down'
     this.movingProgressRemaining = 0
+    this.attackProgressRemaining = 0
     this.hasStarterAnimation = config.starterAnimation
 
     this.directionUpdate = {
@@ -40,7 +41,15 @@ export default class LivingThing extends GameObject {
       this.movingProgressRemaining -= 1
     }
 
-    this.updateMovementSprite(newDirection)
+    // set sprite type
+    if (this.attackProgressRemaining > 0) {
+      this.attackProgressRemaining -= 1
+      this.sprite.animationFrameLimit = 10
+      this.updateAttackSprite()
+    } else {
+      this.sprite.animationFrameLimit = 32
+      this.updateMovementSprite(newDirection)
+    }
   }
 
   updateMovementSprite(newDirection) {
@@ -53,5 +62,13 @@ export default class LivingThing extends GameObject {
     } else if (this.movingProgressRemaining > 0) {
       this.sprite.setAnimation(`walk-${this.direction}`)
     }
+  }
+
+  updateAttackSprite() {
+    this.sprite.setAnimation(`attack-${this.direction}`)
+  }
+
+  startAttack() {
+    this.attackProgressRemaining = 10
   }
 }
