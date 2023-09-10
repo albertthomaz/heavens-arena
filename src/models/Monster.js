@@ -5,14 +5,21 @@ import { astar, Graph } from '../utils/astar.js'
 export default class Monster extends LivingThing {
   constructor(config) {
     super(config)
+    this.directions = Object.keys(this.directionUpdate)
   }
 
   update(state) {
     let newDirection = null
-    if (this.movingProgressRemaining == 0) {
+    if (this.movingProgressRemaining === 0) {
       newDirection = this.followPlayer(state.map)
+
+      if (UTILS.getRandomInt(1, 50) === 5)
+        this.startAttack(state.map.gameObjects)
+    } else {
+      newDirection = this.direction
     }
-    this.updatePosition(state.map, newDirection, 2)
+
+    this.updatePosition(state.map, newDirection)
   }
 
   followPlayer(map) {

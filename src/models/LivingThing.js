@@ -1,4 +1,5 @@
 import { UTILS } from '../utils/utils.js'
+import DamageArea from './DamageArea.js'
 import GameObject from './GameObject.js'
 
 export default class LivingThing extends GameObject {
@@ -10,6 +11,7 @@ export default class LivingThing extends GameObject {
     this.direction = config.direction || 'down'
     this.movingProgressRemaining = 0
     this.attackProgressRemaining = 0
+    this.damageProgressRemaining = 0
     this.hasStarterAnimation = config.starterAnimation
 
     this.directionUpdate = {
@@ -41,6 +43,11 @@ export default class LivingThing extends GameObject {
       this.movingProgressRemaining -= 1
     }
 
+    if (this.damageProgressRemaining > 0) {
+      this.sprite.filter = 'opacity(0.5) drop-shadow(0 0 0 red)'
+      if (--this.damageProgressRemaining == 0) this.sprite.filter = 'none'
+    }
+
     // set sprite type
     if (this.attackProgressRemaining > 0) {
       this.attackProgressRemaining -= 1
@@ -68,7 +75,30 @@ export default class LivingThing extends GameObject {
     this.sprite.setAnimation(`attack-${this.direction}`)
   }
 
-  startAttack() {
-    this.attackProgressRemaining = 10
+  startAttack(gameObjects) {
+    if (this.attackProgressRemaining > 0) return
+
+    this.attackProgressRemaining = 40
+
+    const attackId = UTILS.generateId()
+    const { x, y } = UTILS.nextPosition(this.x, this.y, this.direction)
+
+    const damageArea = new DamageArea({
+      id: attackId,
+      owner: this,
+      x: x,
+      y: y,
+      src: '/src/assets/images/effects/melee-attack.png',
+      starterAnimation: 'effect-idle',
+      animationFrameLimit: 5,
+      useShadow: false,
+      direction: this.direction
+    })
+
+    gameObjects[attackId] = damageArea
+  }
+
+  receiveDamage() {
+    if (this.damageProgressRemaining == 0) this.damageProgressRemaining = 10
   }
 }

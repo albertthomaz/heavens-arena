@@ -1,5 +1,7 @@
+import { UTILS } from '../utils/utils.js'
 import DirectionInput from './DirectionInput.js'
 import OverworldMap from './OverworldMap.js'
+import Monster from '../models/Monster.js'
 
 export default class Overworld {
   constructor(config) {
@@ -26,6 +28,15 @@ export default class Overworld {
         })
         object.sprite.draw(this.ctx)
       })
+
+      if (this.directionInput.summon) {
+        const monsterId = `monster${UTILS.generateId()}`
+        this.map.gameObjects[monsterId] = new Monster({
+          x: UTILS.withGrid(2),
+          y: UTILS.withGrid(12),
+          src: '/src/assets/images/characters/people/dwarf-monster.png'
+        })
+      }
 
       // Draw upper layer
       //this.map.drawUpperImage(this.ctx)

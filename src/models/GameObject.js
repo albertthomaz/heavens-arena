@@ -10,7 +10,9 @@ export default class GameObject {
     this.sprite = new Sprite({
       gameObject: this,
       src: config.src,
-      currentAnimation: config.starterAnimation
+      currentAnimation: config.starterAnimation,
+      animationFrameLimit: config.animationFrameLimit,
+      useShadow: config.useShadow
     })
   }
 

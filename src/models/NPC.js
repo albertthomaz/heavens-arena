@@ -3,9 +3,8 @@ import LivingThing from './LivingThing.js'
 export default class NPC extends LivingThing {
   constructor(config) {
     super(config)
+    this.directions = Object.keys(this.directionUpdate)
   }
-
-  directions = Object.keys(this.directionUpdate)
 
   update(state) {
     let newDirection = null

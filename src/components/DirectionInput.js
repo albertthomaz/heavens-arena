@@ -12,6 +12,7 @@ export default class DirectionInput {
       KeyD: 'right'
     }
     this.heldAttack = false
+    this.summon = false
   }
 
   get direction() {
@@ -29,6 +30,8 @@ export default class DirectionInput {
         this.heldDirections.unshift(dir)
       } else if (e.code === 'KeyE') {
         this.heldAttack = true
+      } else if (e.code === 'KeyQ') {
+        this.summon = true
       }
     })
     document.addEventListener('keyup', (e) => {
@@ -38,6 +41,8 @@ export default class DirectionInput {
         this.heldDirections.splice(index, this.heldDirections.length - index)
       } else if (e.code == 'KeyE') {
         this.heldAttack = false
+      } else if (e.code == 'KeyQ') {
+        this.summon = false
       }
     })
   }

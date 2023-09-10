@@ -13,7 +13,7 @@ export default class Sprite {
     }
 
     // Shadow
-    this.useShadow = true // config.useShadow || false
+    this.useShadow = config.useShadow !== undefined ? config.useShadow : true
     if (this.useShadow) {
       this.shadow = new Image()
       this.shadow.src = '/src/assets/images/characters/shadow.png'
@@ -75,6 +75,12 @@ export default class Sprite {
         [2, 5],
         [3, 5],
         [0, 5]
+      ],
+      'effect-idle': [
+        [0, 0],
+        [1, 0],
+        [2, 0],
+        [3, 0]
       ]
     }
     this.currentAnimation = config.currentAnimation || 'idle-down'
@@ -83,6 +89,9 @@ export default class Sprite {
     // time until next animation frame
     this.animationFrameLimit = config.animationFrameLimit || 32
     this.animationFrameProgress = this.animationFrameLimit
+
+    //this.filter
+    this.filter = 'none'
   }
 
   get frame() {
@@ -113,6 +122,8 @@ export default class Sprite {
   }
 
   draw(ctx) {
+    ctx.filter = this.filter
+
     const x = this.gameObject.x - 8
     const y = this.gameObject.y - 18
 
