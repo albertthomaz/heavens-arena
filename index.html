@@ -2,14 +2,26 @@
 <html>
   <head>
     <title>Heavens Arena</title>
-    <link href="/styles.css" type="text/css" rel="stylesheet" />
+    <link
+      type="image/x-icon"
+      href="src/assets/icons/tower_icon.png"
+      rel="icon"
+    />
+    <link type="text/css" href="src/assets/html/styles.css" rel="stylesheet" />
   </head>
   <body>
+    <div class="development-bar">
+      <button type="button" class="on">AI</button>
+      <button type="button" class="on">PVP</button>
+      <button type="button" class="off" onclick="toggleGrid(this)">Grid</button>
+    </div>
     <div class="game-container">
-      <canvas class="game-canvas" width="352" height="198"></canvas>
+      <div class="grid-overlay"></div>
+      <canvas class="game-canvas" width="352" height="224"></canvas>
     </div>
 
     <!-- Scripts -->
-    <script type="module" src="/init.js"></script>
+    <script type="text/javascript" src="/src/assets/html/index.js"></script>
+    <script type="module" src="src/init.js"></script>
   </body>
 </html>
